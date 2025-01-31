@@ -48,7 +48,7 @@ export class UsersListComponent {
 
     constructor(){
         this.apiService.getUsers().subscribe(
-            (response: any) => {
+            (response: User[]) => {
                 this.usersService.setUsers(response)
             }
         )
