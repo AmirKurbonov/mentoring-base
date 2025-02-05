@@ -9,9 +9,9 @@ import { CreateUserFormComponent } from "../create-user-form/create-user-form.co
 export interface User {
     id: number;
     name: string;
-    username: string;
+    username?: string; //знак вопроса означает, что это поле - необязательное
     email:  string;
-    adress: {
+    adress?: {
         street: string;
         suit: string;
         city: string;
@@ -21,12 +21,12 @@ export interface User {
             lng: string;
         };
     };
-    phone: string;
+    phone?: string;
     website: string;
     company: {
         name: string;
-        catchPhrase: string;
-        bs: string;
+        catchPhrase?: string;
+        bs?: string;
     };
 }
 
@@ -54,6 +54,10 @@ export class UsersListComponent {
             }
         )
 
+        this.usersService.usersSubject.subscribe(
+            users => console.log(this.usersService.usersSubject.value)
+        )
+
         // this.usersService.usersSubject.subscribe(
         //     users => this.users = users
         // )
@@ -61,5 +65,19 @@ export class UsersListComponent {
 
     deleteUser(id: number){
         this.usersService.deleteUser(id)
+    }
+
+    createUser(formData: any) {
+
+        this.usersService.createUser({
+            id: new Date().getTime(),
+            name: formData.name,
+            email: formData.email,
+            website: formData.website,
+            company: {
+                name: formData.companyName,
+            }
+        });
+        
     }
 }

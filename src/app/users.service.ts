@@ -19,9 +19,17 @@ export class UsersService {
     }
 
     createUser(user: User) {
-        this.usersSubject.next(
-            [...this.usersSubject.value, user] 
+        const existedUser = this.usersSubject.value.find(
+            item => item.email === user.email
         )
+
+        if (existedUser !== undefined) {
+            alert('Такой e-mail уже зарегистрирован')            
+        } else {
+            this.usersSubject.next([...this.usersSubject.value, user])
+            alert('Новый пользователь успешо добавлен')
+        }
+        
         //три точки это rest оператор, который позволяет добавлять в массив users нового созданного user.
         // this.users = this.users.concat([user]); Метод concat объединяет два массива в один: [users] + [user] = [users, user]. Это просто второй способ добавлять в массив какой-то новый элемент (перезаписывать его!!).
         // this.users.push(user); Так неправильно делать, потому что этот способ мутирует массив (изменяет его), но не перезаписывает. 
