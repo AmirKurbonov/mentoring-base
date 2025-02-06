@@ -7,6 +7,6 @@
         <input type="text" class="form-input" formControlName="id">
         <p>ВВЕДИТЕ TITLE</p>
         <input type="text" class="form-input" formControlName="title">
-        <button type="submit" style="width: 150px; margin-top: 30px">ДОБАВИТЬ ЗАДАЧУ</button>
+        <button type="submit" style="width: 150px; margin-top: 30px" [disabled]="form.invalid">ДОБАВИТЬ ЗАДАЧУ</button>
     </form>
 </div>

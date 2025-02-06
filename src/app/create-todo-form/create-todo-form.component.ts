@@ -15,7 +15,7 @@ export class CreateTodoFormComponent {
 
 
   public form = new FormGroup({
-    user-id: new FormControl(null, [Validators.required]),
+    userId: new FormControl(null, [Validators.required]),
     id: new FormControl(null, [Validators.required]),
     title: new FormControl(null, [Validators.required]),
   })
