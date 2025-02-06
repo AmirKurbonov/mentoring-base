@@ -3,6 +3,7 @@ import { TodosApiService } from "../todos-api.service";
 import { AsyncPipe, NgFor } from "@angular/common";
 import { TodoCard } from "./todo-card/todo-card.component";
 import { TodosService } from "../todos.service";
+import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
 
 
 export interface Todos {
@@ -17,7 +18,7 @@ export interface Todos {
     templateUrl: './todos-list.component.html',
     styleUrl: './todos-list.component.scss',
     standalone: true,
-    imports: [NgFor, TodoCard, AsyncPipe],
+    imports: [NgFor, TodoCard, AsyncPipe, CreateTodoFormComponent],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
