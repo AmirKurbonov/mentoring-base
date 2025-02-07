@@ -15,13 +15,14 @@ export class CreateTodoFormComponent {
 
 
   public form = new FormGroup({
-    userId: new FormControl(null, [Validators.required]),
-    id: new FormControl(null, [Validators.required]),
+    userId: new FormControl(null, [Validators.required, Validators.minLength(1)]),
+    id: new FormControl(null, [Validators.required, Validators.minLength(1)]),
     title: new FormControl(null, [Validators.required]),
   })
 
   public submitForm(): void {
-    this.createToDo.emit(this.form.value)
+    this.createToDo.emit(this.form.value);
+    this.form.reset(); // для очистки формы
   }
 
 }

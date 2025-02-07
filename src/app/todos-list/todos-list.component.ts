@@ -10,7 +10,7 @@ export interface Todos {
     userId: number;
     id: number;
     title: string;
-    completed: boolean;
+    completed?: boolean;
 }
 
 @Component({
@@ -38,6 +38,8 @@ export class TodosListComponent {
         this.todosService.deleteTodo(id)
     }
 
-    
+    createToDo(formData: any) {
+        this.todosService.createTodo(formData)
+    }
 
 }

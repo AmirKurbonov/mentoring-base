@@ -2,9 +2,9 @@
     <h1>Todo Form</h1>
     <form style="display: flex; flex-direction: column; margin-bottom: 30px;" [formGroup]="form" (ngSubmit)="submitForm()">
         <p>ВВЕДИТЕ USER-ID</p>
-        <input type="text" class="form-input" formControlName="user-id">
+        <input type="number" class="form-input" formControlName="userId">
         <p>ВВЕДИТЕ ID</p>
-        <input type="text" class="form-input" formControlName="id">
+        <input type="number" class="form-input" formControlName="id">
         <p>ВВЕДИТЕ TITLE</p>
         <input type="text" class="form-input" formControlName="title">
         <button type="submit" style="width: 150px; margin-top: 30px" [disabled]="form.invalid">ДОБАВИТЬ ЗАДАЧУ</button>
