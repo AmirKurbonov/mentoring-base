@@ -7,8 +7,9 @@
             <div class="header-nav-item" *ngFor="let item of nav">{{item}}</div>
           </div>
         </nav>
-        <button (click)="deleteCatalog()">Delete Catalog</button>
-        <button routerLink="/users-list">К компоненту списка юзеров</button>
+        <button (click)="deleteCatalog()" style="cursor: pointer;">Delete Catalog</button>
+        <button [routerLink]="isToggled ? '/' : '/users-list'" (click)="isToggled = !isToggled" style="cursor: pointer;">Users</button>
+        <button [routerLink]="isToggled ? '/' : '/todos'" (click)="isToggled = !isToggled" style="cursor: pointer;">Todos</button>
       </div>
       <div class="header-Right">
         <div class="phone-bar">

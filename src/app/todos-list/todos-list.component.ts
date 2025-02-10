@@ -38,8 +38,13 @@ export class TodosListComponent {
         this.todosService.deleteTodo(id)
     }
 
-    createToDo(formData: any) {
-        this.todosService.createTodo(formData)
+    createToDo(formData: Todos) {
+        this.todosService.createTodo({
+            userId: formData.userId,
+            id: new Date().getTime(),
+            title: formData.title,
+            completed: formData.completed
+        })
     }
 
 }

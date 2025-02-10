@@ -20,8 +20,6 @@ export class TodosService {
     }
 
     createTodo(todo: Todos) {
-
-        todo.completed = false; // изначально любая вновь добавляемая задача не закончена
         
         const existingTask = this.todosSubject.value.find(
             item => item.title === todo.title
@@ -31,6 +29,7 @@ export class TodosService {
             alert('Такая задача уже существует')
         } else {
             this.todosSubject.next([...this.todosSubject.value, todo])
+            alert('Задача успешно добавлена!')
         }
     }
 

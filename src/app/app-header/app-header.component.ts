@@ -13,6 +13,7 @@ export class AppHeaderComponent {
     nav = ['Главная','О компании','Каталог'];
     
     isDelete: boolean = false;
+    isToggled: boolean = false;
 
     deleteCatalog() {
       if (this.isDelete === false){

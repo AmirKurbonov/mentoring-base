@@ -30,6 +30,14 @@ export interface User {
     };
 }
 
+export interface CreateUser {
+    id: number;
+    name: string;
+    email: string;
+    website: string;
+    companyName: string;
+}
+
 
 @Component(
     {
@@ -67,7 +75,7 @@ export class UsersListComponent {
         this.usersService.deleteUser(id)
     }
 
-    createUser(formData: any) {
+    createUser(formData: CreateUser) {
 
         this.usersService.createUser({
             id: new Date().getTime(),
