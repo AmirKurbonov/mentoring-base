@@ -1,13 +1,31 @@
 <div style="margin: 0 auto; width: 80%;" >
     <h1>Todo Form</h1>
-    <form style="display: flex; flex-direction: column; margin-bottom: 30px;" [formGroup]="formTodo" (ngSubmit)="submitForm()">
-        <p>АВТОР ЗАДАЧИ</p>
-        <input type="text" class="form-input" formControlName="userId">
+    <form style="display: flex; flex-direction: column; margin-bottom: 30px; min-width: 150px; max-width: 250px;" [formGroup]="formTodo" (ngSubmit)="submitForm()">
+        <mat-form-field class="example-full-width">
+             <mat-label>АВТОР ЗАДАЧИ</mat-label>
+        <input matInput placeholder="Ex. Amir Kurbonov" type="text" class="form-input" formControlName="userId">
+        
+        <!-- @if (userId.hasError('email') && !emailFormControl.hasError('required')) {
+        <mat-error>Please enter a valid email address</mat-error>
+        }
+        @if (emailFormControl.hasError('required')) {
+        <mat-error>Email is <strong>required</strong></mat-error>
+        } -->
+
+        </mat-form-field>
+
         <div 
             *ngIf="formTodo.controls['userId'].invalid && formTodo.controls['userId'].dirty && formTodo.controls['userId'].touched" 
             class="alert">
-            <div *ngIf="formTodo.controls['userId'].errors">Необходимо ввести автора или автор введен неправильно</div>
+            <mat-error *ngIf="formTodo.controls['userId'].errors">Необходимо ввести автора или автор введен неправильно</mat-error>
         </div>
+
+        <!-- <div 
+            *ngIf="formTodo.controls['userId'].invalid && formTodo.controls['userId'].dirty && formTodo.controls['userId'].touched" 
+            class="alert">
+            <div *ngIf="formTodo.controls['userId'].errors">Необходимо ввести автора или автор введен неправильно</div>
+        </div> -->
+
         <p>ТЕКСТ ЗАДАЧИ</p>
         <input type="text" class="form-input" formControlName="title">
         <div 
@@ -22,6 +40,6 @@
             class="alert">
             <div *ngIf="formTodo.controls['completed'].errors">ОТВЕТ НЕ КОРРЕКТЕН. Необходимо ввести "Да" или "Нет".</div>
         </div>
-        <button type="submit" style="width: 150px; margin-top: 30px" [disabled]="formTodo.invalid">ДОБАВИТЬ ЗАДАЧУ</button>
+        <button type="submit" style="width: 150px; margin-top: 30px" [disabled]="formTodo.invalid" mat-button>Add Todo</button>
     </form>
 </div>

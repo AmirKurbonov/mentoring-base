@@ -24,4 +24,15 @@ export class AppHeaderComponent {
       this.isDelete = !this.isDelete;
       return this.nav;
     };
+
+
+    menuItems = ['Каталог', 'Стройматериалы', 'Интсрументы', 'Электрика', 'Интерьер и одежда'];
+    isUpperCase = true;
+
+    changeMenuText() {
+      this.menuItems = this.menuItems.map(
+        item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
+      );
+      this.isUpperCase = !this.isUpperCase;
+    }
 }

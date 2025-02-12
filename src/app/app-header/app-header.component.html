@@ -4,10 +4,11 @@
         <img src="/assets/Frame.svg" alt="Logo">
         <nav class="Sections-Bottom">
           <div class="Bottom-Menu">
-            <div class="header-nav-item" *ngFor="let item of nav">{{item}}</div>
+            <a class="nav-item" *ngFor="let item of nav">{{item}}</a>
           </div>
         </nav>
         <button (click)="deleteCatalog()" style="cursor: pointer;">Delete Catalog</button>
+        <button (click)="changeMenuText()" style="cursor: pointer;">Upper/LowerCase Menu</button>
         <button [routerLink]="isToggled ? '/' : '/users-list'" (click)="isToggled = !isToggled" style="cursor: pointer;">Users</button>
         <button [routerLink]="isToggled ? '/' : '/todos'" (click)="isToggled = !isToggled" style="cursor: pointer;">Todos</button>
       </div>
@@ -28,19 +29,13 @@
   </div>
   <div class="Light-TopBar">
     <div class="Light-Container">
-      <div class="Frame-5">
-        <img src="/assets/light.svg" alt="Catalog-Logo">
-        <div class="Catalog">Каталог</div>
-      </div>
       <div class="Select">
-        <div class="Select-Materials">Стройматериалы</div>
-        <div class="Select-Tools">Инструменты</div>
-        <div class="Select-Electric">Электрика</div>
-        <div class="Select-Interier">Интерьер и одежда</div>
+        <img src="/assets/light.svg" alt="Catalog-Logo" style="cursor: pointer;">
+        <div class="header-item" *ngFor="let item of menuItems">{{item}}</div>
       </div>
       <div class="Search-Area">
         <input type="search" placeholder="Поиск, например Круг зачистной">
-        <img src="/assets/Search.svg" alt="Search-Logo">
+        <img src="/assets/Search.svg" alt="Search-Logo" style="cursor: pointer;">
       </div>
       <div class="Location">
         <img src="/assets/Location.svg" alt="Location-Logo">
