@@ -4,3 +4,50 @@
 .alert {
     color: red;
 }
+
+// Скриншот формы
+// ![Screenshot](assets/screenshots/Screenshot_1.png)
+
+.form-button {
+    height: 40px;
+    width: 100%;
+    background-color: #f1f1f1;
+    color: black;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-transform: none;
+    margin-top: 10px;
+    border: none ;
+
+    &:hover,
+    &:focus,
+    &:active {
+        outline: none; // Убираем обводку при фокусе
+        box-shadow: none; // Убираем тень при фокусе
+        background-color: #e0e0e0; // Изменяем цвет фона при наведении
+    }
+
+    // Убираем внутренние стили кнопки mat-icon-button
+    mat-icon {
+        margin: 0;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+    }
+
+    .mat-button-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 0; // Убираем внутренние отступы
+    }
+
+    .mat-icon-button {
+        border-radius: 10px; // Устанавливаем радиус границы для кнопки
+    }
+}
