@@ -38,6 +38,14 @@ export interface CreateUser {
     companyName: string;
 }
 
+export interface EditUser {
+    name?: string;
+    email?: string;
+    website?: string;
+    companyName?: string;
+    id: number;
+}
+
 
 @Component(
     {

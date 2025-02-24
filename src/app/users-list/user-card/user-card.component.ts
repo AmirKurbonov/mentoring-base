@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
-import { User } from "../users-list.component";
+import { EditUser, User } from "../users-list.component";
 import {
     MAT_DIALOG_DATA,
     MatDialog,
@@ -19,7 +19,7 @@ import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.co
 })
 export class UserCardComponent {
     @Input()
-    user: any
+    user!: User
 
     @Output()
     deleteUser = new EventEmitter()
@@ -35,8 +35,9 @@ export class UserCardComponent {
           data: { user: this.user },
         });
     
-        dialogRef.afterClosed().subscribe(editResult => {
+        dialogRef.afterClosed().subscribe((editResult: EditUser) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', editResult);
+            if (!editResult) return; // проверка: при нажатии мимо модалки, вернуть ничего.
             this.editUser.emit(editResult)
         });
     }
