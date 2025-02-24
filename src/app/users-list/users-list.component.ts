@@ -71,6 +71,18 @@ export class UsersListComponent {
         // )
     }
 
+    editUser(formData: CreateUser) {
+        this.usersService.editUser({
+            id: formData.id,
+            name: formData.name,
+            email: formData.email,
+            website: formData.website,
+            company: {
+                name: formData.companyName,
+            }
+        })
+    }
+
     deleteUser(id: number){
         this.usersService.deleteUser(id)
     }
