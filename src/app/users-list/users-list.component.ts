@@ -1,9 +1,12 @@
 import { AsyncPipe, NgFor } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from "@angular/core";
 import { UserApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
+import {
+    MatDialog,
+  } from '@angular/material/dialog';
 
 
 export interface User {
@@ -93,6 +96,21 @@ export class UsersListComponent {
 
     deleteUser(id: number){
         this.usersService.deleteUser(id)
+    }
+
+    readonly dialog = inject(MatDialog);
+
+
+    openCreateDialog() {
+        const dialogRef = this.dialog.open(CreateUserFormComponent, {
+            data: { user: '' },
+          });
+      
+          dialogRef.afterClosed().subscribe((createResult: CreateUser) => {
+              console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createResult);
+              if (!createResult) return; // проверка: при нажатии мимо модалки, вернуть ничего.
+              this.createUser(createResult)
+          });
     }
 
     createUser(formData: CreateUser) {

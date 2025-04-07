@@ -1,15 +1,10 @@
 import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
 import { EditUser, User } from "../users-list.component";
 import {
-    MAT_DIALOG_DATA,
     MatDialog,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatDialogRef,
-    MatDialogTitle,
   } from '@angular/material/dialog';
 import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.component";
+import { CreateUserFormComponent } from "../../create-user-form/create-user-form.component";
 
 @Component({
     selector: 'app-user-card',
@@ -30,7 +25,7 @@ export class UserCardComponent {
     readonly dialog = inject(MatDialog)
 
 
-    openDialog(): void {
+    openEditDialog(): void {
         const dialogRef = this.dialog.open(EditUserDialogComponent, {
           data: { user: this.user },
         });
@@ -41,6 +36,8 @@ export class UserCardComponent {
             this.editUser.emit(editResult)
         });
     }
+
+    
 
     
     
