@@ -106,10 +106,10 @@ export class UsersListComponent {
             data: { user: '' },
           });
       
-          dialogRef.afterClosed().subscribe((createResult: CreateUser) => {
-              console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createResult);
-              if (!createResult) return; // проверка: при нажатии мимо модалки, вернуть ничего.
-              this.createUser(createResult)
+          dialogRef.afterClosed().subscribe((createUserFields: CreateUser) => {
+              console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
+              if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
+              this.createUser(createUserFields)
           });
     }
 

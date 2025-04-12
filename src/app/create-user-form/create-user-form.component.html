@@ -1,4 +1,4 @@
-<div style="margin: 0 auto; width: 80%;">
+<div style="margin: 0px auto; padding: 50px;">
     <h1>FORM</h1>
     <div style="margin-bottom: 30px;">
         <form style="display: flex; flex-direction: column;" [formGroup]="form" (ngSubmit)="submitForm()">
@@ -30,7 +30,7 @@
             class="alert">
             <div *ngIf="form.controls['companyName'].errors">companyName ВВЕДЕНН НЕПРАВИЛЬНО</div>
         </div>
-            <button type="submit" style="width: 150px; margin-top: 30px;" [disabled]="form.invalid">
+            <button type="submit" style="width: 150px; margin-top: 30px;" [disabled]="form.invalid" [mat-dialog-close]="createUserFields">
                 Create user
             </button>
         </form>

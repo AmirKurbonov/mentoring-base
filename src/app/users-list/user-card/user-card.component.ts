@@ -40,6 +40,8 @@ export class UserCardComponent {
     
 
     
+
+    
     
     onDeleteUser(userID: number) {
         this.deleteUser.emit(userID)

@@ -1,11 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogClose } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-user-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, MatDialogClose],
   templateUrl: './create-user-form.component.html',
   styleUrl: './create-user-form.component.scss'
 })
@@ -24,6 +25,10 @@ export class CreateUserFormComponent {
   public submitForm(): void {
     this.createUser.emit(this.form.value)
     this.form.reset(); // для очистки формы
+  }
+
+  get createUserFields() {
+    return this.form.value
   }
 
   // constructor() {
