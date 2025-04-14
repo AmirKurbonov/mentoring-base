@@ -3,12 +3,15 @@ import { EditUser, User } from "../users-list.component";
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.component";
 import { UserDeleteDialogComponent } from "../user-delete-dialog/user-delete-dialog.component";
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
     selector: 'app-user-card',
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.scss',
-    standalone: true
+    standalone: true,
+    imports: [MatCardModule, MatButtonModule]
 })
 export class UserCardComponent {
     @Input()

@@ -1,14 +1,13 @@
 
 <div class="UsersList-Container">
     <div *ngFor="let item of usersService.usersSubject | async">
-    <app-user-card [user]="item" 
-    (deleteUser)="deleteUser($event)" 
-    (editUser)="editUser($event)"></app-user-card>
+        <app-user-card [user]="item" 
+        (deleteUser)="deleteUser($event)" 
+        (editUser)="editUser($event)">
+        </app-user-card>
     </div>
-    <button 
-        style="height: 429px; margin: 24px 0px;"
-        (click)="openCreateDialog()">
-    Create user
+    <button (click)="openCreateDialog()">
+        Create user
     </button>
 </div>
 
