@@ -5,6 +5,7 @@ import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
 import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 export interface User {
@@ -107,12 +108,11 @@ export class UsersListComponent {
           dialogRef.afterClosed().subscribe((createUserFields: CreateUser) => {
               console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
               if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
-              this.createUser(createUserFields)
+              this.createUser(createUserFields);
           });
     }
 
     createUser(formData: CreateUser) {
-
         this.usersService.createUser({
             id: new Date().getTime(),
             name: formData.name,
@@ -122,6 +122,6 @@ export class UsersListComponent {
                 name: formData.companyName,
             }
         });
-        
     }
+
 }

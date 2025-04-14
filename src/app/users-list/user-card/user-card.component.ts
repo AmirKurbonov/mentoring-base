@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.component";
 import { UserDeleteDialogComponent } from "../user-delete-dialog/user-delete-dialog.component";
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({
@@ -34,7 +35,8 @@ export class UserCardComponent {
         dialogRef.afterClosed().subscribe((editResult: EditUser) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', editResult);
             if (!editResult) return; // проверка: при нажатии мимо модалки, вернуть ничего.
-            this.editUser.emit(editResult)
+            this.editUser.emit(editResult);
+            this.editSnackBar();
         });
     }
 
@@ -44,9 +46,19 @@ export class UserCardComponent {
         dialogRef.afterClosed().subscribe((deleteUserInformation: boolean) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', deleteUserInformation);
             if (deleteUserInformation === true) {
-                this.deleteUser.emit(this.user.id)
+                this.deleteUser.emit(this.user.id);
+                this.deleteSnackBar();
             } else return; // проверка: при нажатии мимо модалки, вернуть ничего.
         });
     }
+
+    private _snackBar = inject(MatSnackBar);
+    deleteSnackBar() {
+        this._snackBar.open("User is successfuly deleted", "OK");
+    }
+    editSnackBar() {
+        this._snackBar.open("User is successfuly edited", "OK");
+    }
+
 
 }

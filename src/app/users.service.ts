@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { User } from "./users-list/users-list.component";
 import { BehaviorSubject } from "rxjs";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
@@ -18,16 +19,21 @@ export class UsersService {
         )
     }
 
+    private _snackBar = inject(MatSnackBar);
+    createSnackBar() {
+        this._snackBar.open("User is successfuly created", "OK");
+    }
+
     createUser(user: User) {
         const existedUser = this.usersSubject.value.find(
             item => item.email === user.email
         )
 
         if (existedUser !== undefined) {
-            alert('Такой e-mail уже зарегистрирован')            
+            alert('Пользователь с таким e-mail уже зарегистрирован')            
         } else {
-            this.usersSubject.next([...this.usersSubject.value, user])
-            alert('Новый пользователь успешо добавлен')
+            this.usersSubject.next([...this.usersSubject.value, user]);
+            this.createSnackBar();
         }
         
         //три точки это rest оператор, который позволяет добавлять в массив users нового созданного user.

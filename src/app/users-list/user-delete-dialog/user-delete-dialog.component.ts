@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MatDialogClose } from '@angular/material/dialog';
 
 @Component({
@@ -8,12 +8,10 @@ import { MatDialogClose } from '@angular/material/dialog';
     imports: [MatDialogClose]
 })
 export class UserDeleteDialogComponent {
-  get yes(): boolean {
-    return true
-  }
-
-  get no(): boolean {
-    return false
-  }
-
+    get yes(): boolean {
+      return true
+    }
+    get no(): boolean {
+      return false
+    }
 }
