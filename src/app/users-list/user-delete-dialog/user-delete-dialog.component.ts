@@ -1,5 +1,6 @@
 import { Component, inject } from "@angular/core";
-import { MatDialogClose } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
+import { User } from "../users-list.component";
 
 @Component({
     selector: 'user-delete-dialog',
@@ -8,10 +9,18 @@ import { MatDialogClose } from '@angular/material/dialog';
     imports: [MatDialogClose]
 })
 export class UserDeleteDialogComponent {
-    get yes(): boolean {
-      return true
-    }
-    get no(): boolean {
-      return false
-    }
+
+  readonly data = inject<{user: User}>(MAT_DIALOG_DATA);
+  
+  constructor() {
+      console.log('DATA: ', this.data);
+  }
+
+  get yes(): boolean {
+    return true
+  }
+  
+  get no(): boolean {
+    return false
+  }
 }

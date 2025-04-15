@@ -41,7 +41,9 @@ export class UserCardComponent {
     }
 
     userDeleteDialog(): void {
-        const dialogRef = this.dialog.open(UserDeleteDialogComponent);
+        const dialogRef = this.dialog.open(UserDeleteDialogComponent, {
+            data: { user: this.user },
+          });
       
         dialogRef.afterClosed().subscribe((deleteUserInformation: boolean) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', deleteUserInformation);
