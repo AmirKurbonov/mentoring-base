@@ -6,7 +6,7 @@ import { TodosService } from "../todos.service";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
 
 
-export interface Todos {
+export interface Todo {
     userId: number;
     id: number;
     title: string;
@@ -28,7 +28,7 @@ export class TodosListComponent {
 
     constructor(){
         this.apiService.getTodos().subscribe(
-            (response: Todos[]) => {
+            (response: Todo[]) => {
                 this.todosService.setTodos(response)
             }
         )
@@ -38,7 +38,7 @@ export class TodosListComponent {
         this.todosService.deleteTodo(id)
     }
 
-    createToDo(formData: Todos) {
+    createToDo(formData: Todo) {
         this.todosService.createTodo({
             userId: formData.userId,
             id: new Date().getTime(),

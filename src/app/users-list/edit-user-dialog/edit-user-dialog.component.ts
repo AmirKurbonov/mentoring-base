@@ -34,8 +34,13 @@ export class EditUserDialogComponent {
     // (это чтобы добавлять какие-либо данные к имеющимся (например id к данным формы) и передавать их как единый объект)
     get userWithUpdatedFields() {
         return {
-            ...this.form.value,
             id: this.data.user.id,
+            name: this.form.value.name,
+            email: this.form.value.email,
+            website: this.form.value.website,
+            company: {
+                name: this.form.value.companyName
+            }
         }
     }
     

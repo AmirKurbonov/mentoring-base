@@ -5,42 +5,43 @@ import { NotificationService } from './notification.service';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
-    usersSubject = new BehaviorSubject<User[]>([]);
 
-    setUsers(users: User[]) {
-        this.usersSubject.next(users)
+    private usersSubject$ = new BehaviorSubject<User[]>([]);
+    users$ = this.usersSubject$.asObservable(); // только для чтения, чтобы случайно вне класса UsersService не изменить этот Subject. Потому что изменять Subject мы можем только внутри нашего сервиса. 
+
+    setUsers(users: User[]): void {
+        this.usersSubject$.next(users)
     }
 
-    editUser(editedUser: User) {
-        this.usersSubject.next(
-            this.usersSubject.value.map(
-                (item: User) => item.id === editedUser.id ? editedUser : item
+    editUser(editedUser: User): void {
+        this.usersSubject$.next(
+            this.usersSubject$.value.map(
+                (user: User) => user.id === editedUser.id ? editedUser : user
             )
         )
     }
 
-
     private _notificationService: NotificationService = inject(NotificationService);
 
-    createUser(user: User) {
-        const existedUser = this.usersSubject.value.find(
-            (item: User) => item.email === user.email
+    createUser(user: User): void {
+        const existedUser: User | undefined = this.usersSubject$.value.find(
+            (currElement: User) => currElement.email === user.email
         )
 
         if (existedUser !== undefined) {
             alert('Пользователь с таким e-mail уже зарегистрирован')            
         } else {
-            this.usersSubject.next([...this.usersSubject.value, user]);
+            this.usersSubject$.next([...this.usersSubject$.value, user]);
             this._notificationService.showSuccess("User is successfully created");
         }
-        
     }
 
-    deleteUser(id: number) {
-        this.usersSubject.next(
-            this.usersSubject.value.filter(
-                (item: User) => item.id === id ? false : true
+    deleteUser(id: number): void {
+        this.usersSubject$.next(
+            this.usersSubject$.value.filter(
+                (user: User) => user.id === id ? false : true
             )
         )
     }
+
 }

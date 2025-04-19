@@ -1,28 +1,27 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Todos } from "./todos-list/todos-list.component";
+import { Todo } from "./todos-list/todos-list.component";
 
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
-    todosSubject = new BehaviorSubject<Todos[]>([])
+    todosSubject = new BehaviorSubject<Todo[]>([])
 
-    setTodos(todos: Todos[]) {
+    setTodos(todos: Todo[]): void {
         this.todosSubject.next(todos)
     }
 
-    editTodo(editedTodo: Todos){
+    editTodo(editedTodo: Todo): void {
         this.todosSubject.next(
             this.todosSubject.value.map(
-                item => item.id === editedTodo.id ? editedTodo : item
+                todo => todo.id === editedTodo.id ? editedTodo : todo
             )
         )
     }
 
-    createTodo(todo: Todos) {
-        
-        const existingTask = this.todosSubject.value.find(
-            item => item.title === todo.title
+    createTodo(todo: Todo): void {
+        const existingTask: Todo | undefined = this.todosSubject.value.find(
+            (item: Todo) => item.title === todo.title
         )
 
         if(existingTask !== undefined) {
@@ -33,10 +32,10 @@ export class TodosService {
         }
     }
 
-    deleteTodo(id: number) {
+    deleteTodo(id: number): void {
         this.todosSubject.next(
             this.todosSubject.value.filter(
-                item => item.id === id ? false : true
+                (todo: Todo) => todo.id === id ? false : true
             )
         )
     }

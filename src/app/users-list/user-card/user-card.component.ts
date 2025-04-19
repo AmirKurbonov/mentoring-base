@@ -15,24 +15,24 @@ import {MatButtonModule} from '@angular/material/button';
     imports: [MatCardModule, MatButtonModule]
 })
 export class UserCardComponent {
+
+    readonly dialog = inject(MatDialog)
+
     @Input()
     user!: User
 
     @Output()
-    deleteUser = new EventEmitter()
+    deleteUser = new EventEmitter<number>()
 
     @Output()
-    editUser = new EventEmitter()
-
-    readonly dialog = inject(MatDialog)
-
+    editUser = new EventEmitter<User>()
 
     openEditDialog(): void {
         const dialogRef = this.dialog.open(EditUserDialogComponent, {
           data: { user: this.user },
         });
     
-        dialogRef.afterClosed().subscribe((editResult: EditUser) => {
+        dialogRef.afterClosed().subscribe((editResult: User) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', editResult);
             if (!editResult) return; // проверка: при нажатии мимо модалки, вернуть ничего.
             this.editUser.emit(editResult);

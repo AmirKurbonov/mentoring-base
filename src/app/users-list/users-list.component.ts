@@ -1,32 +1,32 @@
 import { AsyncPipe, NgFor } from "@angular/common";
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit} from "@angular/core";
 import { UserApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Observable } from "rxjs";
 
 
 export interface User {
     id: number;
-    name: string;
+    name: string | undefined;
     username?: string; //знак вопроса означает, что это поле - необязательное
-    email:  string;
+    email:  string | undefined;
     adress?: {
         street: string;
-        suit: string;
+        suit?: string;
         city: string;
-        zipcode: string;
-        geo: {
+        zipcode?: string;
+        geo?: {
             lat: string;
             lng: string;
         };
     };
     phone?: string;
-    website: string;
+    website: string | undefined;
     company: {
-        name: string;
+        name: string | undefined;
         catchPhrase?: string;
         bs?: string;
     };
@@ -59,57 +59,41 @@ export interface EditUser {
     changeDetection: ChangeDetectionStrategy.OnPush
     }
 )
+export class UsersListComponent implements OnInit {
 
-export class UsersListComponent {
     readonly apiService = inject(UserApiService);
-    readonly usersService = inject(UsersService);
-    
+    private readonly usersService = inject(UsersService);
 
-    constructor(){
+    users$: Observable<User[]> = this.usersService.users$;
+
+    ngOnInit(): void {
         this.apiService.getUsers().subscribe(
             (response: User[]) => {
                 this.usersService.setUsers(response)
             }
         )
-
-        this.usersService.usersSubject.subscribe(
-            users => console.log(this.usersService.usersSubject.value)
-        )
-
-        // this.usersService.usersSubject.subscribe(
-        //     users => this.users = users
-        // )
     }
 
-    editUser(formData: CreateUser) {
-        this.usersService.editUser({
-            id: formData.id,
-            name: formData.name,
-            email: formData.email,
-            website: formData.website,
-            company: {
-                name: formData.companyName,
-            }
-        })
+    editUser(formData: User) {
+        this.usersService.editUser(formData)
     }
 
-    deleteUser(id: number){
+    deleteUser(id: number) {
         this.usersService.deleteUser(id)
     }
 
-    readonly dialog = inject(MatDialog);
-
+    readonly dialog: MatDialog = inject(MatDialog);
 
     openCreateDialog() {
         const dialogRef = this.dialog.open(CreateUserFormComponent, {
             data: { user: '' },
-          });
+        });
       
-          dialogRef.afterClosed().subscribe((createUserFields: CreateUser) => {
-              console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
-              if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
-              this.createUser(createUserFields);
-          });
+        dialogRef.afterClosed().subscribe((createUserFields: CreateUser) => {
+            console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
+            if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
+            this.createUser(createUserFields);
+        });
     }
 
     createUser(formData: CreateUser) {
