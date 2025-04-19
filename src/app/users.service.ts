@@ -5,9 +5,11 @@ import { NotificationService } from './notification.service';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
-
+    
     private usersSubject$ = new BehaviorSubject<User[]>([]);
     users$ = this.usersSubject$.asObservable(); // только для чтения, чтобы случайно вне класса UsersService не изменить этот Subject. Потому что изменять Subject мы можем только внутри нашего сервиса. 
+    
+    private _notificationService: NotificationService = inject(NotificationService);
 
     setUsers(users: User[]): void {
         this.usersSubject$.next(users)
@@ -19,9 +21,8 @@ export class UsersService {
                 (user: User) => user.id === editedUser.id ? editedUser : user
             )
         )
+        this._notificationService.showSuccess("User is successfully edited");
     }
-
-    private _notificationService: NotificationService = inject(NotificationService);
 
     createUser(user: User): void {
         const existedUser: User | undefined = this.usersSubject$.value.find(
@@ -36,12 +37,13 @@ export class UsersService {
         }
     }
 
-    deleteUser(id: number): void {
+    deleteUser(userID: number): void {
         this.usersSubject$.next(
             this.usersSubject$.value.filter(
-                (user: User) => user.id === id ? false : true
+                (user: User) => user.id === userID ? false : true
             )
         )
+        this._notificationService.showSuccess("User is successfully deleted");
     }
 
 }

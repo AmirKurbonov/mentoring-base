@@ -3,7 +3,7 @@ import { Component, inject, model } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatDialogClose } from '@angular/material/dialog';
-import { CreateUser, EditUser, User } from "../users-list.component";
+import { User } from "../users-list.component";
 
 
 

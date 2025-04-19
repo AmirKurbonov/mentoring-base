@@ -1,9 +1,9 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
 export function completedValidator(): ValidatorFn {
@@ -26,15 +26,16 @@ export function completedValidator(): ValidatorFn {
 })
 export class CreateTodoFormComponent {
 
+  private readonly formBuilder: FormBuilder = inject(FormBuilder);
+
   @Output()
   createToDo = new EventEmitter();
 
-
-  public formTodo = new FormGroup({
-    userId: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    completed: new FormControl('', [Validators.required, completedValidator()])
-  })
+  public formTodo = this.formBuilder.group({
+    userID: ['', Validators.required, Validators.minLength(2)],
+    title: ['', Validators.required, Validators.minLength(3)],
+    completed: ['', Validators.required, completedValidator()]
+  });
 
   private getCompletedValue(): boolean {
     const value = this.formTodo.get('completed')?.value!.trim().toLowerCase();

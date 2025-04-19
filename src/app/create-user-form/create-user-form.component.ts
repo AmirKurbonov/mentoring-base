@@ -15,7 +15,7 @@ export class CreateUserFormComponent {
   @Output()
   createUser = new EventEmitter();
 
-  public form = new FormGroup({
+  public form: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     website: new FormControl(null, [Validators.required, Validators.minLength(3)]),
@@ -28,14 +28,15 @@ export class CreateUserFormComponent {
   }
 
   get createUserFields() {
-    return this.form.value
+    return {
+      id: new Date().getTime(),
+      name: this.form.value.name,
+      email: this.form.value.email,
+      website: this.form.value.website,
+      company: {
+          name: this.form.value.companyName,
+      }
+    }
   }
-
-  // constructor() {
-  //   this.form.valueChanges.subscribe((formValue) => {
-  //     console.log(this.form.get('name')?.errors)
-  //     console.log(formValue)
-  //   })
-  // }
 
 }

@@ -4,6 +4,7 @@ import { AsyncPipe, NgFor } from "@angular/common";
 import { TodoCard } from "./todo-card/todo-card.component";
 import { TodosService } from "../todos.service";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
+import { Observable } from "rxjs";
 
 
 export interface Todo {
@@ -24,7 +25,9 @@ export interface Todo {
 
 export class TodosListComponent {
     readonly apiService = inject(TodosApiService)
-    readonly todosService = inject(TodosService)
+    private readonly todosService = inject(TodosService)
+
+    todos$: Observable<Todo[]> = this.todosService.todos$;
 
     constructor(){
         this.apiService.getTodos().subscribe(

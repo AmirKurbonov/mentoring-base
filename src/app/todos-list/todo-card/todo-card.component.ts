@@ -14,7 +14,7 @@ export class TodoCard {
     todo!: Todo
 
     @Output()
-    deleteTodo = new EventEmitter()
+    deleteTodo = new EventEmitter<number>()
 
     onDeleteTodo(todoID: number){
         this.deleteTodo.emit(todoID)

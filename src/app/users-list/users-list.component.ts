@@ -32,23 +32,6 @@ export interface User {
     };
 }
 
-export interface CreateUser {
-    id: number;
-    name: string;
-    email: string;
-    website: string;
-    companyName: string;
-}
-
-export interface EditUser {
-    name?: string;
-    email?: string;
-    website?: string;
-    companyName?: string;
-    id: number;
-}
-
-
 @Component(
     {
     selector: 'app-users-list',
@@ -62,9 +45,12 @@ export interface EditUser {
 export class UsersListComponent implements OnInit {
 
     readonly apiService = inject(UserApiService);
+
     private readonly usersService = inject(UsersService);
 
     users$: Observable<User[]> = this.usersService.users$;
+
+    readonly dialog: MatDialog = inject(MatDialog);
 
     ngOnInit(): void {
         this.apiService.getUsers().subscribe(
@@ -78,33 +64,23 @@ export class UsersListComponent implements OnInit {
         this.usersService.editUser(formData)
     }
 
-    deleteUser(id: number) {
-        this.usersService.deleteUser(id)
+    deleteUser(userID: number) {
+        this.usersService.deleteUser(userID)
     }
 
-    readonly dialog: MatDialog = inject(MatDialog);
+    createUser(formData: User) {
+        this.usersService.createUser(formData);
+    }
 
     openCreateDialog() {
         const dialogRef = this.dialog.open(CreateUserFormComponent, {
             data: { user: '' },
         });
       
-        dialogRef.afterClosed().subscribe((createUserFields: CreateUser) => {
+        dialogRef.afterClosed().subscribe((createUserFields: User) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
             if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
             this.createUser(createUserFields);
-        });
-    }
-
-    createUser(formData: CreateUser) {
-        this.usersService.createUser({
-            id: new Date().getTime(),
-            name: formData.name,
-            email: formData.email,
-            website: formData.website,
-            company: {
-                name: formData.companyName,
-            }
         });
     }
 
