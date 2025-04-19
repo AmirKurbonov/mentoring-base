@@ -17,10 +17,6 @@ export class EditUserDialogComponent {
     
     readonly data = inject<{user: User}>(MAT_DIALOG_DATA);
 
-    constructor() {
-        console.log('DATA: ', this.data);
-    }
-
     public form = new FormGroup({
         name: new FormControl(this.data.user.name, [Validators.required, Validators.minLength(2)]),
         email: new FormControl(this.data.user.email, [Validators.required, Validators.email]),

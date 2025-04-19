@@ -6,31 +6,10 @@ import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from "rxjs";
+import { User } from "../interfaces/users.interface";
 
 
-export interface User {
-    id: number;
-    name: string;
-    username?: string; //знак вопроса означает, что это поле - необязательное
-    email:  string;
-    adress?: {
-        street: string;
-        suit?: string;
-        city: string;
-        zipcode?: string;
-        geo?: {
-            lat: string;
-            lng: string;
-        };
-    };
-    phone?: string;
-    website: string;
-    company: {
-        name: string;
-        catchPhrase?: string;
-        bs?: string;
-    };
-}
+
 
 @Component(
     {
@@ -85,3 +64,5 @@ export class UsersListComponent implements OnInit {
     }
 
 }
+
+export { User };

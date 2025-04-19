@@ -40,7 +40,7 @@ export class UserCardComponent {
 
     userDeleteDialog(): void {
         const dialogRef = this.dialog.open(UserDeleteDialogComponent, {
-            data: { user: this.user },
+            data: this.user.name,
           });
       
         dialogRef.afterClosed().subscribe((deleteUserInformation: boolean) => {

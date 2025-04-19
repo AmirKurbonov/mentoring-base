@@ -10,17 +10,6 @@ import { User } from "../users-list.component";
 })
 export class UserDeleteDialogComponent {
 
-  readonly data = inject<{user: User}>(MAT_DIALOG_DATA);
+  readonly userName = inject<string>(MAT_DIALOG_DATA);
   
-  constructor() {
-      console.log('DATA: ', this.data);
-  }
-
-  get yes(): boolean {
-    return true
-  }
-  
-  get no(): boolean {
-    return false
-  }
 }
