@@ -10,9 +10,9 @@ import { Observable } from "rxjs";
 
 export interface User {
     id: number;
-    name: string | undefined;
+    name: string;
     username?: string; //знак вопроса означает, что это поле - необязательное
-    email:  string | undefined;
+    email:  string;
     adress?: {
         street: string;
         suit?: string;
@@ -24,9 +24,9 @@ export interface User {
         };
     };
     phone?: string;
-    website: string | undefined;
+    website: string;
     company: {
-        name: string | undefined;
+        name: string;
         catchPhrase?: string;
         bs?: string;
     };
