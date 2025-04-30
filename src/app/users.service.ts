@@ -40,7 +40,7 @@ export class UsersService {
     deleteUser(userID: number): void {
         this.usersSubject$.next(
             this.usersSubject$.value.filter(
-                (user: User) => user.id === userID ? false : true
+                (user: User) => (user.id === userID) ? false : true
             )
         )
         this._notificationService.showSuccess("User is successfully deleted");
