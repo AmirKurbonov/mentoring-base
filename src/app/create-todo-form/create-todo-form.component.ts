@@ -39,9 +39,7 @@ export class CreateTodoFormComponent {
 
   private getCompletedValue(): boolean {
     const value = this.formTodo.get('completed')?.value!.trim().toLowerCase();
-    if (value === 'да') 
-      return true;
-    else return false;
+    return value === 'да';
   }
 
   public submitForm(): void {

@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogClose } from '@angular/material/dialog';
+import { User } from '../interfaces/users.interface';
 
 @Component({
   selector: 'app-create-user-form',
@@ -13,7 +14,7 @@ import { MatDialogClose } from '@angular/material/dialog';
 export class CreateUserFormComponent {
   
   @Output()
-  createUser = new EventEmitter();
+  createUser: EventEmitter<User> = new EventEmitter();
 
   public form: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -24,7 +25,7 @@ export class CreateUserFormComponent {
 
   public submitForm(): void {
     this.createUser.emit(this.form.value)
-    this.form.reset(); // для очистки формы
+    this.form.reset();
   }
 
   get createUserFields() {
