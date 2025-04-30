@@ -45,7 +45,7 @@ export class UserCardComponent {
 
         dialogRef.afterClosed().subscribe((deleteUserInformation: boolean) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', deleteUserInformation);
-            if (deleteUserInformation === true) {
+            if (deleteUserInformation) {
                 this.deleteUser.emit(this.user.id);
             } else return; // проверка: при нажатии мимо модалки, вернуть ничего.
         });
