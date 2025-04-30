@@ -1,16 +1,18 @@
 <div class="header">
     <div class="header-container">
       <div class="header-Left">
-        <img src="/assets/Frame.svg" alt="Logo">
+        <a routerLink="/">
+          <img src="/assets/Frame.svg" alt="Logo">
+        </a>
         <nav class="Sections-Bottom">
           <div class="Bottom-Menu">
             <a class="nav-item" *ngFor="let item of nav">{{item}}</a>
           </div>
         </nav>
-        <button (click)="deleteCatalog()" style="cursor: pointer;">Delete Catalog</button>
-        <button (click)="changeMenuText()" style="cursor: pointer;">Upper/LowerCase Menu</button>
-        <button [routerLink]="isToggled ? '/' : '/users-list'" (click)="isToggled = !isToggled" style="cursor: pointer;">Users</button>
-        <button [routerLink]="isToggled ? '/' : '/todos'" (click)="isToggled = !isToggled" style="cursor: pointer;">Todos</button>
+        <button (click)="deleteCatalog()" class="actionButton">Delete Catalog</button>
+        <button (click)="changeMenuText()" class="actionButton">Upper/LowerCase Menu</button>
+        <button routerLink="/users-list" class="actionButton">Users</button>
+        <button routerLink="/todos" class="actionButton">Todos</button>
       </div>
       <div class="header-Right">
         <div class="phone-bar">

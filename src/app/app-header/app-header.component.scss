@@ -26,11 +26,6 @@
 
 }
 
-// .Bottom-Menu {
-//     display: flex;
-//     gap: 10px;
-// }
-
 .header-Right {
     display: flex;
     align-items: center;
@@ -68,7 +63,6 @@ image.Logo {
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-
 }
 
 .nav-item {
@@ -200,4 +194,8 @@ input {
     text-decoration-skip-ink: none;
     color: white;
     margin-left: 4px;
+}
+
+.actionButton {
+    cursor: pointer;
 }
