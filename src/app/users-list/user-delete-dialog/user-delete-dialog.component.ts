@@ -1,6 +1,5 @@
 import { Component, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
-import { User } from "../users-list.component";
 
 @Component({
     selector: 'user-delete-dialog',
@@ -11,5 +10,5 @@ import { User } from "../users-list.component";
 export class UserDeleteDialogComponent {
 
   readonly userName = inject<string>(MAT_DIALOG_DATA);
-  
+
 }

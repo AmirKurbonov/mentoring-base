@@ -52,17 +52,12 @@ export class UsersListComponent implements OnInit {
     }
 
     openCreateDialog() {
-        const dialogRef = this.dialog.open(CreateUserFormComponent, {
-            data: { user: '' },
-        });
-      
+        const dialogRef = this.dialog.open(CreateUserFormComponent);
+
         dialogRef.afterClosed().subscribe((createUserFields: User) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
             if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
             this.createUser(createUserFields);
         });
     }
-
 }
-
-export { User };

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { User } from "./users-list/users-list.component";
 import { Observable } from "rxjs";
+import {User} from "./interfaces/users.interface";
 
 @Injectable({
 	providedIn: 'root'
@@ -36,5 +36,5 @@ export class UserApiService {
 
 
 // Это, чтобы объяснить, что мы можем обращаться к полям класса только через экземпляры класса.
-// При пропытке просто написать название класса и обратиться к его полю, у нас ничего не выйдет. 
+// При пропытке просто написать название класса и обратиться к его полю, у нас ничего не выйдет.
 // newClassTest1.field1

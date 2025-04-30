@@ -3,7 +3,7 @@ import { Component, inject, model } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatDialogClose } from '@angular/material/dialog';
-import { User } from "../users-list.component";
+import {User} from "../../interfaces/users.interface";
 
 
 
@@ -14,7 +14,7 @@ import { User } from "../users-list.component";
     imports: [ReactiveFormsModule, NgIf, MatDialogClose],
 })
 export class EditUserDialogComponent {
-    
+
     readonly data = inject<{user: User}>(MAT_DIALOG_DATA);
 
     public form = new FormGroup({
@@ -26,7 +26,7 @@ export class EditUserDialogComponent {
 
 
     // гетер нужен во-первых для добавления id юзера (это чтобы редактировать его по id)
-    // во-вторых к гетеру можно обращаться как к полю, хотя он является методом 
+    // во-вторых к гетеру можно обращаться как к полю, хотя он является методом
     // (это чтобы добавлять какие-либо данные к имеющимся (например id к данным формы) и передавать их как единый объект)
     get userWithUpdatedFields() {
         return {
@@ -39,5 +39,5 @@ export class EditUserDialogComponent {
             }
         }
     }
-    
+
 }

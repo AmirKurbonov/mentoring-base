@@ -1,10 +1,10 @@
 import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
-import { User } from "../users-list.component";
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.component";
 import { UserDeleteDialogComponent } from "../user-delete-dialog/user-delete-dialog.component";
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {User} from "../../interfaces/users.interface";
 
 @Component({
     selector: 'app-user-card',
@@ -30,7 +30,7 @@ export class UserCardComponent {
         const dialogRef = this.dialog.open(EditUserDialogComponent, {
           data: { user: this.user },
         });
-    
+
         dialogRef.afterClosed().subscribe((editResult: User) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', editResult);
             if (!editResult) return; // проверка: при нажатии мимо модалки, вернуть ничего.
@@ -42,7 +42,7 @@ export class UserCardComponent {
         const dialogRef = this.dialog.open(UserDeleteDialogComponent, {
             data: this.user.name,
           });
-      
+
         dialogRef.afterClosed().subscribe((deleteUserInformation: boolean) => {
             console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', deleteUserInformation);
             if (deleteUserInformation === true) {
