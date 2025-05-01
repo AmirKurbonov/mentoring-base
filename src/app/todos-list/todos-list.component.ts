@@ -5,14 +5,9 @@ import { TodoCard } from "./todo-card/todo-card.component";
 import { TodosService } from "../todos.service";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
 import { Observable } from "rxjs";
+import {Todo} from "../interfaces/todos.interface";
 
 
-export interface Todo {
-    userId: number;
-    id: number;
-    title: string;
-    completed?: boolean;
-}
 
 @Component({
     selector: 'app-todos-list',

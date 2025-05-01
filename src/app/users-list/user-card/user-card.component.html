@@ -6,6 +6,7 @@
     <mat-card-content>
         <p>{{user.website}}</p>
         <p>{{user.email}}</p>
+        <p>{{user.phone | deletePhoneDashes}}</p>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="warn" (click)="userDeleteDialog()">Delete user</button>

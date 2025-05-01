@@ -1,22 +1,25 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, RouterLink],
+  imports: [NgFor, RouterLink, DatePipe],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'
 })
 export class AppHeaderComponent {
-    nav = ['Главная','О компании','Каталог'];
-    
+
+    myDate: Date = new Date();
+
+    nav: string[] = ['Главная','О компании','Каталог'];
     isDelete: boolean = false;
     isToggled: boolean = false;
 
     deleteCatalog() {
-      if (this.isDelete === false){
+      if (!this.isDelete){
         this.nav = ['Главная','О компании'];
       } else {
         this.nav = ['Главная','О компании','Каталог'];
