@@ -1,0 +1,43 @@
+<div style="margin: 0 auto; width: 80%;" >
+    <h1>Todo Form</h1>
+    <form style="display: flex; flex-direction: column; margin-bottom: 30px; min-width: 150px; max-width: 250px;" [formGroup]="formTodo" (ngSubmit)="submitForm()">
+        <mat-form-field class="example-full-width">
+            <mat-label>АВТОР ЗАДАЧИ</mat-label>
+            <input matInput placeholder="Ex. Amir Kurbonov" type="text" class="form-input" formControlName="userId">
+            
+            @if (formTodo.get('userId')?.hasError('minlength')) {
+                <mat-error>Автор введен неправильно</mat-error>
+            }
+
+            @if (formTodo.get('userId')?.hasError('required')) {
+                <mat-error>Необходимо ввести автора</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>ТЕКСТ ЗАДАЧИ</mat-label>
+            <input matInput placeholder="Ex. Сделать задачу для Junior Angular" type="text" class="form-input" formControlName="title">
+
+            @if (formTodo.get('title')?.hasError('minlength')) {
+                <mat-error>Задача введена неправильно</mat-error>
+            }
+
+            @if (formTodo.get('title')?.hasError('required')) {
+                <mat-error>Необходимо написать задачу</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>ЗАДАЧА РЕШЕНА</mat-label>
+            <input matInput placeholder="Ex. Да, Нет" type="text" class="form-input" formControlName="completed">
+        
+            <mat-error *ngIf="formTodo.controls['completed'].invalid">
+                Необходимо ввести 'Да' или 'Нет'
+            </mat-error>
+        </mat-form-field>
+        <button type="submit"  class="form-button" [disabled]="formTodo.invalid" mat-icon-button>
+            <mat-icon>add</mat-icon>
+            Add Todo
+        </button>
+    </form>
+</div>

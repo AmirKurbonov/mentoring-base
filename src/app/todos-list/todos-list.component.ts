@@ -1,0 +1,48 @@
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { TodosApiService } from "../todos-api.service";
+import { AsyncPipe, NgFor } from "@angular/common";
+import { TodoCard } from "./todo-card/todo-card.component";
+import { TodosService } from "../todos.service";
+import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
+import { Observable } from "rxjs";
+import {Todo} from "../interfaces/todos.interface";
+
+
+
+@Component({
+    selector: 'app-todos-list',
+    templateUrl: './todos-list.component.html',
+    styleUrl: './todos-list.component.scss',
+    standalone: true,
+    imports: [NgFor, TodoCard, AsyncPipe, CreateTodoFormComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+
+export class TodosListComponent {
+    readonly apiService = inject(TodosApiService)
+    private readonly todosService = inject(TodosService)
+
+    todos$: Observable<Todo[]> = this.todosService.todos$;
+
+    constructor(){
+        this.apiService.getTodos().subscribe(
+            (response: Todo[]) => {
+                this.todosService.setTodos(response)
+            }
+        )
+    }
+
+    deleteTodo(id: number){
+        this.todosService.deleteTodo(id)
+    }
+
+    createToDo(formData: Todo) {
+        this.todosService.createTodo({
+            userId: formData.userId,
+            id: new Date().getTime(),
+            title: formData.title,
+            completed: formData.completed
+        })
+    }
+
+}

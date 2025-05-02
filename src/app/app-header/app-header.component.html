@@ -1,0 +1,48 @@
+<div class="header">
+    <div class="header-container">
+      <div class="header-Left">
+        <a routerLink="/">
+          <img src="/assets/Frame.svg" alt="Logo">
+        </a>
+        <nav class="Sections-Bottom">
+          <div class="Bottom-Menu">
+            <a class="nav-item" *ngFor="let item of nav">{{item}}</a>
+          </div>
+        </nav>
+        <button (click)="deleteCatalog()" class="actionButton">Delete Catalog</button>
+        <button (click)="changeMenuText()" class="actionButton">Upper/LowerCase Menu</button>
+        <button routerLink="/users-list" class="actionButton">Users</button>
+        <button routerLink="/todos" class="actionButton">Todos</button>
+        <p>{{myDate | date:'medium'}}</p>
+      </div>
+      <div class="header-Right">
+        <div class="phone-bar">
+          <img src="/assets/Phone.svg" alt="Phone">
+          <div class="Phone-Number">+7 (965) 084-29-29 123</div>
+        </div>
+        <div class="heart">
+          <img src="/assets/heart 1.svg" alt="Heart-1">
+        </div>
+        <button class="Frame-3">
+            <img src="/assets/Mask group.svg" alt="Busket-Logo">
+            <span class="Busket-Text">Пусто</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="Light-TopBar">
+    <div class="Light-Container">
+      <div class="Select">
+        <img src="/assets/light.svg" alt="Catalog-Logo" style="cursor: pointer;">
+        <div class="header-item" *ngFor="let item of menuItems">{{item}}</div>
+      </div>
+      <div class="Search-Area">
+        <input type="search" class="searchInput" placeholder="Поиск, например Круг зачистной">
+        <img src="/assets/Search.svg" alt="Search-Logo" style="cursor: pointer;">
+      </div>
+      <div class="Location">
+        <img src="/assets/Location.svg" alt="Location-Logo">
+        <div class="Location-City">Москва</div>
+      </div>
+    </div>
+  </div>

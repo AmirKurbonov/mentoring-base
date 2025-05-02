@@ -1,0 +1,194 @@
+.header {
+    height: 80px;
+    margin: 0 auto;
+    background: #4B565E;
+    align-items: center;
+    color: white;
+
+}
+
+.header-container {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    max-width: 1320px;
+    height: 80px;
+    margin: 0 auto;
+    align-items: center;
+    color: white;
+
+}
+
+.header-Left {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+}
+
+.header-Right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.phone-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+image.Logo {
+    height: 40px;
+}
+
+.Sections-Bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.Bottom-Menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 19px;
+    gap: 24px;
+    opacity: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Phone-Number {
+    font-weight: 600;
+    height: 19px;
+}
+
+.heart {
+    margin: 0px 50px;
+}
+
+.Frame-3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    gap: 10px;
+    border: 1px solid #F0BA4E;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.Busket-Text {
+    font-weight: 600;
+    color: white;
+    height: 19px;
+}
+
+.Light-TopBar {
+    background: #F0BA4E;
+    display: flex;
+    height: 48px;
+    margin: 0 auto;
+    align-items: center;
+    color: white;
+}
+
+.Light-Container {
+    width: 100%;
+    max-width: 1320px;
+    height: 48px;
+    gap: 24px;
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between
+}
+
+.Frame-5 {
+    width: 83px;
+    height: 24px;
+    gap: 10px;
+    align-items: center;
+    display: flex;
+}
+
+.Catalog {
+    width: 57px;
+    height: 17px;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.Select {
+    width: 696px;
+    height: 17px;
+    gap: 24px;
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-item {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Search-Area {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+
+}
+
+.searchInput {
+    border: none;
+    width: 376px;
+    background: transparent;
+    outline: 0;
+    outline-offset: 0;
+}
+
+.Location {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.Location-City {
+    width: 53px;
+    height: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: white;
+    margin-left: 4px;
+}
+
+.actionButton {
+    cursor: pointer;
+}

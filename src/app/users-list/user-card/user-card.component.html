@@ -1,0 +1,15 @@
+<mat-card class="User-Card">
+    <mat-card-header>
+        <mat-card-title>{{user.name | uppercase}}</mat-card-title>
+        <mat-card-subtitle>{{user.company.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{user.website}}</p>
+        <p>{{user.email}}</p>
+        <p>{{user.phone | deletePhoneDashes}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="userDeleteDialog()">Delete user</button>
+        <button mat-raised-button color="primary" (click)="openEditDialog()">Edit user</button>
+      </mat-card-actions>
+</mat-card>

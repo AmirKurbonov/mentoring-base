@@ -1,0 +1,6 @@
+<div class="Todo-Card">
+    <p>{{todo.userId}}-{{todo.id}}</p>
+    <p>{{todo.title | titleLimitation}}</p>
+    <p>{{ todo.completed ? 'Да' : 'Нет'}}</p>
+    <button class="TodoCard-DeleteButton" (click)="onDeleteTodo(todo.id)">Delete task</button>
+</div>
