@@ -6,13 +6,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {User} from "../../interfaces/users.interface";
 import {DeletePhoneDashesPipe} from "../../pipes/delete-phone-dashes.pipe";
+import { UpperCasePipe} from "@angular/common";
 
 @Component({
     selector: 'app-user-card',
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.scss',
     standalone: true,
-  imports: [MatCardModule, MatButtonModule, DeletePhoneDashesPipe]
+  imports: [MatCardModule, MatButtonModule, DeletePhoneDashesPipe, UpperCasePipe]
 })
 export class UserCardComponent {
 
