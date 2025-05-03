@@ -27,9 +27,9 @@ export class UsersListComponent implements OnInit {
 
     private readonly usersService = inject(UsersService);
 
-    users$: Observable<User[]> = this.usersService.users$;
-
     readonly dialog: MatDialog = inject(MatDialog);
+
+    users$: Observable<User[]> = this.usersService.users$;
 
     ngOnInit(): void {
         this.apiService.getUsers().subscribe(

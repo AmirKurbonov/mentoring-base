@@ -7,13 +7,20 @@ import { MatButtonModule } from '@angular/material/button';
 import {User} from "../../interfaces/users.interface";
 import {DeletePhoneDashesPipe} from "../../pipes/delete-phone-dashes.pipe";
 import { UpperCasePipe} from "@angular/common";
+import {GreenDirective} from "../../directives/green.directive";
 
 @Component({
     selector: 'app-user-card',
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.scss',
     standalone: true,
-  imports: [MatCardModule, MatButtonModule, DeletePhoneDashesPipe, UpperCasePipe]
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    DeletePhoneDashesPipe,
+    UpperCasePipe,
+    GreenDirective
+  ]
 })
 export class UserCardComponent {
 
