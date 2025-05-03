@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angula
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatDialogClose } from '@angular/material/dialog';
 import {User} from "../../interfaces/users.interface";
+import {MatTooltip} from "@angular/material/tooltip";
 
 
 
@@ -11,7 +12,7 @@ import {User} from "../../interfaces/users.interface";
     selector: 'app-edit-user-dialog',
     templateUrl: './edit-user-dialog.component.html',
     standalone: true,
-    imports: [ReactiveFormsModule, NgIf, MatDialogClose],
+  imports: [ReactiveFormsModule, NgIf, MatDialogClose, MatTooltip],
 })
 export class EditUserDialogComponent {
 
