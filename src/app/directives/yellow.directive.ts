@@ -6,7 +6,7 @@ import {Directive, HostBinding, HostListener } from "@angular/core";
 })
 export class YellowDirective {
 
-  backgroundColor =  'transparent';
+  backgroundColor = 'transparent';
   color = 'white';
 
   @HostBinding('style.background-color')

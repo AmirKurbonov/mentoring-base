@@ -8,6 +8,7 @@ import {User} from "../../interfaces/users.interface";
 import {DeletePhoneDashesPipe} from "../../pipes/delete-phone-dashes.pipe";
 import { UpperCasePipe} from "@angular/common";
 import {GreenDirective} from "../../directives/green.directive";
+import {BoxShadowDirective} from "../../directives/box-shadow.directive";
 
 @Component({
     selector: 'app-user-card',
@@ -19,7 +20,8 @@ import {GreenDirective} from "../../directives/green.directive";
     MatButtonModule,
     DeletePhoneDashesPipe,
     UpperCasePipe,
-    GreenDirective
+    GreenDirective,
+    BoxShadowDirective
   ]
 })
 export class UserCardComponent {
