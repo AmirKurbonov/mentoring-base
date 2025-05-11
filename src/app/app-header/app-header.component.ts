@@ -1,17 +1,23 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {YellowDirective} from "../directives/yellow.directive";
+import { MatDialog } from '@angular/material/dialog';
+import { AuthComponent } from '../auth/auth.component';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, RouterLink, DatePipe, YellowDirective],
+  imports: [NgFor, RouterLink, DatePipe, YellowDirective, AsyncPipe, NgIf],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'
 })
 export class AppHeaderComponent {
+
+    private readonly dialog = inject(MatDialog)
+    public readonly userService = inject(UserService)
 
     myDate: Date = new Date();
 
@@ -38,5 +44,28 @@ export class AppHeaderComponent {
         item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
       );
       this.isUpperCase = !this.isUpperCase;
+    }
+
+    public openDialog(): void {
+      const dialogRef = this.dialog.open(AuthComponent, {
+        width: "400px",
+        height: "200px"
+      });
+  
+      dialogRef.afterClosed().subscribe((result: string) => {
+        console.log('Результат подписки после Диалог_Окна: ',result);
+        if (result === 'admin'){
+          this.userService.loginAsAdmin();
+        } else if (result === 'user') {
+          this.userService.loginAsUser();
+        } else return undefined;
+      });
+    }
+
+    public logout() {
+      if (confirm("Вы точно хотите выйти?")){
+        console.log('Cовершили logout')
+        return this.userService.logout();
+      } else return false;
     }
 }

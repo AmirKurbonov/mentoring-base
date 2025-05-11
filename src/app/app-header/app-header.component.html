@@ -7,6 +7,8 @@
         <nav class="Sections-Bottom">
           <div class="Bottom-Menu">
             <a class="nav-item" *ngFor="let item of nav">{{item}}</a>
+            <a routerLink="/users">>Юзеры</a>
+            <a routerLink="/admin">>Админка</a>
           </div>
         </nav>
         <button (click)="deleteCatalog()" class="actionButton">Delete Catalog</button>
@@ -27,6 +29,10 @@
             <img src="/assets/Mask group.svg" alt="Busket-Logo">
             <span class="Busket-Text">Пусто</span>
         </button>
+        <div>
+          <button (click)="openDialog()" class="Frame-3" *ngIf="(userService.user$ | async) === null">Войти</button>
+          <button (click)="logout()" class="Frame-3" *ngIf="(userService.user$ | async) !== null">Выйти</button>
+        </div>
       </div>
     </div>
   </div>
