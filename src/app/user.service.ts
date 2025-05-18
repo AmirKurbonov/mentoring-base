@@ -31,7 +31,7 @@ export class UserService {
     console.log('Вошли как Пользователь')
   }
 
-  get isAdmin() {
+  get isAdmin():boolean | null | undefined {
     return this.userSubject$.value?.isAdmin
   }
 

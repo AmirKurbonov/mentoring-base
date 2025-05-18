@@ -7,8 +7,7 @@
         <nav class="Sections-Bottom">
           <div class="Bottom-Menu">
             <a class="nav-item" *ngFor="let item of nav">{{item}}</a>
-            <a routerLink="/users">>Юзеры</a>
-            <a routerLink="/admin">>Админка</a>
+            <a class="nav-item" routerLink="/admin">Админка</a>
           </div>
         </nav>
         <button (click)="deleteCatalog()" class="actionButton">Delete Catalog</button>
