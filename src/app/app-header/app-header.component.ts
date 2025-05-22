@@ -54,17 +54,12 @@ export class AppHeaderComponent {
   
       dialogRef.afterClosed().subscribe((result: string) => {
         console.log('Результат подписки после Диалог_Окна: ',result);
-        if (result === 'admin'){
-          this.userService.loginAsAdmin();
-        } else if (result === 'user') {
-          this.userService.loginAsUser();
-        } else return undefined;
+        (result === 'admin') ? this.userService.loginAsAdmin() : this.userService.loginAsUser();
       });
     }
 
     public logout() {
       if (confirm("Вы точно хотите выйти?")){
-        console.log('Cовершили logout')
         return this.userService.logout();
       } else return false;
     }

@@ -11,5 +11,4 @@ export const routes: Routes = [
     {path: '', redirectTo: '/main', pathMatch: 'full'},
     {path: 'todos', component: TodosListComponent},
     {path: 'admin', component: AdminComponent, canActivate: [authGuard]},
-
 ];
