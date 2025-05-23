@@ -7,6 +7,9 @@ import { CreateUserFormComponent } from "../create-user-form/create-user-form.co
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from "rxjs";
 import { User } from "../interfaces/users.interface";
+import { Store } from "@ngrx/store";
+import { UsersActions } from "./store/user.actions";
+import { selectUsers } from "./store/users.selectors";
 
 
 
@@ -27,28 +30,36 @@ export class UsersListComponent implements OnInit {
 
     private readonly usersService = inject(UsersService);
 
+    private readonly store = inject(Store);
+
     readonly dialog: MatDialog = inject(MatDialog);
 
     users$: Observable<User[]> = this.usersService.users$;
+
+    readonly users$_NGRX = this.store.select(selectUsers);
 
     ngOnInit(): void {
         this.apiService.getUsers().subscribe(
             (response: User[]) => {
                 this.usersService.setUsers(response)
+                this.store.dispatch(UsersActions.set({ users: response}))
             }
         )
     }
 
     editUser(formData: User) {
-        this.usersService.editUser(formData)
+        this.usersService.editUser(formData);
+        this.store.dispatch(UsersActions.edit({user: formData}));
     }
 
     deleteUser(userID: number) {
-        this.usersService.deleteUser(userID)
+        this.usersService.deleteUser(userID);
+        this.store.dispatch(UsersActions.delete({id: userID}));
     }
 
     createUser(formData: User) {
         this.usersService.createUser(formData);
+        this.store.dispatch(UsersActions.create({user: formData}));
     }
 
     openCreateDialog() {

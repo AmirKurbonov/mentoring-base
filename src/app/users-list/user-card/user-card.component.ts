@@ -37,7 +37,7 @@ export class UserCardComponent {
     @Output()
     editUser = new EventEmitter<User>()
 
-    openEditDialog(): void {
+    userEditDialog(): void {
         const dialogRef = this.dialog.open(EditUserDialogComponent, {
           data: { user: this.user },
         });
