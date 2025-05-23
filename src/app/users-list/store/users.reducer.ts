@@ -10,19 +10,25 @@ export const userReducer = createReducer(
     initialState,
     on(UsersActions.set, (state, payload) => ({
         ...state,
-        users: payload.users,
+        users: payload.users
     })),
     on(UsersActions.edit, (state, payload) => ({
         ...state,
-        user: state.users.map((user) => user.id === payload.user.id ? payload.user : user),
+        user: state.users.map((user) => {
+            if (user.id === payload.user.id) {
+                return payload.user;
+            } else {
+                return user;
+            } 
+        })
     })),
     on(UsersActions.create, (state, payload) => ({
         ...state,
-        users: [...state.users, payload.user],
+        users: [...state.users, payload.user]
     })),
     on(UsersActions.delete, (state, payload) => ({
         ...state,
-        users: state.users.filter((user) => user.id !== payload.id),
+        users: state.users.filter((user) => user.id !== payload.id)
     }))
 );
 

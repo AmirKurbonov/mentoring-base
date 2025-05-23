@@ -11,9 +11,6 @@ import { Store } from "@ngrx/store";
 import { UsersActions } from "./store/user.actions";
 import { selectUsers } from "./store/users.selectors";
 
-
-
-
 @Component(
     {
     selector: 'app-users-list',
@@ -48,6 +45,7 @@ export class UsersListComponent implements OnInit {
     }
 
     editUser(formData: User) {
+        console.log('получили измененного юзера в Юзер-лист: ', formData);
         this.usersService.editUser(formData);
         this.store.dispatch(UsersActions.edit({user: formData}));
     }
@@ -71,4 +69,5 @@ export class UsersListComponent implements OnInit {
             this.createUser(createUserFields);
         });
     }
+
 }
