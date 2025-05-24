@@ -47,7 +47,7 @@ export class UsersListComponent implements OnInit {
     editUser(formData: User) {
         console.log('получили измененного юзера в Юзер-лист: ', formData);
         this.usersService.editUser(formData);
-        this.store.dispatch(UsersActions.edit({user: formData}));
+        this.store.dispatch(UsersActions.edit({ user: formData }));
     }
 
     deleteUser(userID: number) {
