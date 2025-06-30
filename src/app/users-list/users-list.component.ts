@@ -2,14 +2,13 @@ import { AsyncPipe, NgFor } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, OnInit} from "@angular/core";
 import { UserApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
-import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from "rxjs";
 import { User } from "../interfaces/users.interface";
 import { Store } from "@ngrx/store";
 import { UsersActions } from "./store/user.actions";
 import { selectUsers } from "./store/users.selectors";
+import { NotificationService } from "../notification.service";
 
 @Component(
     {
@@ -25,46 +24,41 @@ export class UsersListComponent implements OnInit {
 
     readonly apiService = inject(UserApiService);
 
-    private readonly usersService = inject(UsersService);
+    private _notificationService: NotificationService = inject(NotificationService);
 
     private readonly store = inject(Store);
 
     readonly dialog: MatDialog = inject(MatDialog);
 
-    users$: Observable<User[]> = this.usersService.users$;
-
-    readonly users$_NGRX = this.store.select(selectUsers);
+    public readonly users$ = this.store.select(selectUsers);
 
     ngOnInit(): void {
         this.apiService.getUsers().subscribe(
             (response: User[]) => {
-                this.usersService.setUsers(response)
                 this.store.dispatch(UsersActions.set({ users: response}))
             }
         )
     }
 
     editUser(formData: User) {
-        console.log('получили измененного юзера в Юзер-лист: ', formData);
-        this.usersService.editUser(formData);
         this.store.dispatch(UsersActions.edit({ user: formData }));
+        this._notificationService.showSuccess("User is successfully edited");
     }
 
     deleteUser(userID: number) {
-        this.usersService.deleteUser(userID);
-        this.store.dispatch(UsersActions.delete({id: userID}));
+        this.store.dispatch(UsersActions.delete({ id: userID }));
+        this._notificationService.showSuccess("User is successfully deleted");
     }
 
     createUser(formData: User) {
-        this.usersService.createUser(formData);
-        this.store.dispatch(UsersActions.create({user: formData}));
+        this.store.dispatch(UsersActions.create({ user: formData }));
+        this._notificationService.showSuccess("User is successfully created");
     }
 
     openCreateDialog() {
         const dialogRef = this.dialog.open(CreateUserFormComponent);
 
         dialogRef.afterClosed().subscribe((createUserFields: User) => {
-            console.log('МОДАЛКА ЗАКРЫЛАСЬ, ЗНАЧЕНИЕ ФОРМЫ: ', createUserFields);
             if (!createUserFields) return; // проверка: при нажатии мимо модалки, вернуть ничего.
             this.createUser(createUserFields);
         });
