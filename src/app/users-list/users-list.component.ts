@@ -12,12 +12,12 @@ import { NotificationService } from "../notification.service";
 
 @Component(
     {
-    selector: 'app-users-list',
-    templateUrl: './users-list.component.html',
-    styleUrl: './users-list.component.scss',
-    standalone: true,
-    imports: [NgFor, UserCardComponent, AsyncPipe],
-    changeDetection: ChangeDetectionStrategy.OnPush
+        selector: 'app-users-list',
+        templateUrl: './users-list.component.html',
+        styleUrl: './users-list.component.scss',
+        standalone: true,
+        imports: [NgFor, UserCardComponent, AsyncPipe],
+        changeDetection: ChangeDetectionStrategy.OnPush
     }
 )
 export class UsersListComponent implements OnInit {
