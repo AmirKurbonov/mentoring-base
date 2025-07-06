@@ -34,7 +34,7 @@ export class UserService {
   }
 
   logout() {
-    this.userSubject$.next(null)
+    this.userSubject$.next(null)  
   }
 
 }

@@ -7,7 +7,7 @@ import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.co
 import {Todo} from "../interfaces/todos.interface";
 import { Store } from "@ngrx/store";
 import { TodosActions } from "./store/todo.actions";
-import { selectTodos } from "./store/users.selectors";
+import { selectTodos } from "./store/todos.selectors";
 
 
 
@@ -26,11 +26,7 @@ export class TodosListComponent {
     public readonly todos$ = this.store.select(selectTodos);
 
     constructor(){
-        this.apiService.getTodos().subscribe(
-            (response: Todo[]) => {
-                this.store.dispatch(TodosActions.set({ todos: response}))
-            }
-        )
+        this.store.dispatch(TodosActions.loadTodos());
     }
 
     deleteTodo(id: number){
@@ -38,9 +34,6 @@ export class TodosListComponent {
     }
 
     createToDo(formData: Todo) {
-
-        // добавить условие: если такая задача уже существует, то выдаем об этом сообщение и ничего не делаем,
-        // если же такой задачи еще нет, тогда создаем. Сравнение осущ-ляем по совпадению title. 
 
         this.store.dispatch(TodosActions.create({
             todo: {

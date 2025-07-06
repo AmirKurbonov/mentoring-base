@@ -17,12 +17,17 @@ export const todoReducer = createReducer(
         todos:  state.todos.map((todo: Todo) => (todo.id === payload.todo.id) ? payload.todo : todo)
         }),
     ),
-    on(TodosActions.create, (state, payload) => ({
-        ...state,
-        todos: [...state.todos, payload.todo],
+    on(TodosActions.create, (state, { todo }) => ({
+    ...state,
+    todos: [todo, ...state.todos],
+    
     })),
     on(TodosActions.delete, (state, payload) => ({
         ...state,
         todos: state.todos.filter((todo: Todo) => todo.id !== payload.id),
-    }))
+    })),
+    on(TodosActions.loadTodosSuccess, (state, payload) => ({
+        ...state,
+        todos: payload.todos
+    })),
 );

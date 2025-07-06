@@ -33,11 +33,7 @@ export class UsersListComponent implements OnInit {
     public readonly users$ = this.store.select(selectUsers);
 
     ngOnInit(): void {
-        this.apiService.getUsers().subscribe(
-            (response: User[]) => {
-                this.store.dispatch(UsersActions.set({ users: response}))
-            }
-        )
+        this.store.dispatch(UsersActions.loadUsers())
     }
 
     editUser(formData: User) {

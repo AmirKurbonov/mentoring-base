@@ -24,5 +24,9 @@ export const userReducer = createReducer(
     on(UsersActions.delete, (state, payload) => ({
         ...state,
         users: state.users.filter((user: User) => user.id !== payload.id),
-    }))
+    })),
+    on(UsersActions.loadUsersSuccess, (state, payload) => ({
+        ...state,
+        users: payload.users
+    })),
 );
